@@ -3,14 +3,13 @@ import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import InputError from '@/Components/InputError.vue';
 import InputLabel from '@/Components/InputLabel.vue';
 import TextInput from '@/Components/TextInput.vue';
-import PrimaryButton from '@/Components/PrimaryButton.vue';
 import { useForm, Head, usePage } from '@inertiajs/vue3';
-import { computed, ref, watch } from 'vue';
 
 defineProps(['member']);
 const member = usePage().props.member;
 
 const form = useForm({
+    _method: 'put',
     name: member.name,
     date_of_birth: member.date_of_birth,
     gender: member.gender,
@@ -27,6 +26,7 @@ const form = useForm({
     result_type: member.result_type,
     language_skill: JSON.parse(member.language_skill),
     experience_in_year: member.experience_in_year,
+    
 });
 
 </script>
@@ -35,50 +35,14 @@ const form = useForm({
     <Head title="Edit Member"/>
  
     <AuthenticatedLayout>
+        
         <div class="max-w-2xl mx-auto p-4 sm:p-6 lg:p-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-5">
-                <!-- <h3>Form Elements are listed below:</h3> -->
-                <legend>Form Elements</legend><hr>
-                <ul class="ps-5 flex flex-wrap" style="list-style-type:circle">
-                    <!-- <li class="grow w-20">input</li>
-                    <li class="grow w-20">label</li>
-                    <li class="grow w-20">select</li>
-                    <li class="grow w-20">textarea</li>
-                    <li class="grow w-20">button</li>
-                    <li class="grow w-20">fieldset</li>
-                    <li class="grow w-20">legend</li>
-                    <li class="grow w-20">datalist</li>
-                    <li class="grow w-20">output</li>
-                    <li class="grow w-20">option</li> -->
-                    <!-- <li>optgroup</li> -->
 
-                    <!-- input type="button" -->
-                    <!-- input type="checkbox" -->
-                    <!-- input type="color" -->
-                    <!-- input type="date" -->
-                    <!-- input type="datetime-local" -->
-                    <!-- input type="email" -->
-                    <!-- input type="file" -->
-                    <!-- input type="hidden" -->
-                    <!-- input type="image" -->
-                    <!-- input type="month" -->
-                    <!-- input type="number" -->
-                    <!-- input type="password" -->
-                    <!-- input type="radio" -->
-                    <!-- input type="range" -->
-                    <!-- input type="reset" -->
-                    <!-- input type="search" -->
-                    <!-- input type="submit" -->
-                    <!-- input type="tel" -->
-                    <!-- input type="text" -->
-                    <!-- input type="time" -->
-                    <!-- input type="url" -->
-                    <!-- input type="week" -->
-
-                </ul>
-                <form @submit.prevent="form.patch(route('members.update', member.id), { onSuccess: () => form.reset() })" enctype="multipart/form-data">
-                    <fieldset class="mt-4">
+                <form @submit.prevent="form.post(route('members.update', member.id))" enctype="multipart/form-data">
+                    <fieldset class="mt-0">
                         <legend >Personal Info</legend>
+                      
                         <hr>
                         <div class="mt-4">
                             <InputLabel for="name" value="1. Name *" />

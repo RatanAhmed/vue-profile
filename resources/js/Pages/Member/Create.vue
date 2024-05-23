@@ -3,9 +3,7 @@ import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import InputError from '@/Components/InputError.vue';
 import InputLabel from '@/Components/InputLabel.vue';
 import TextInput from '@/Components/TextInput.vue';
-import PrimaryButton from '@/Components/PrimaryButton.vue';
 import { useForm, Head } from '@inertiajs/vue3';
-import { computed, ref, watch } from 'vue';
 
 const form = useForm({
     name: '',
@@ -33,47 +31,8 @@ const form = useForm({
     <AuthenticatedLayout>
         <div class="max-w-2xl mx-auto p-4 sm:p-6 lg:p-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-5">
-                <!-- <h3>Form Elements are listed below:</h3> -->
-                <legend>Form Elements</legend><hr>
-                <ul class="ps-5 flex flex-wrap" style="list-style-type:circle">
-                    <!-- <li class="grow w-20">input</li>
-                    <li class="grow w-20">label</li>
-                    <li class="grow w-20">select</li>
-                    <li class="grow w-20">textarea</li>
-                    <li class="grow w-20">button</li>
-                    <li class="grow w-20">fieldset</li>
-                    <li class="grow w-20">legend</li>
-                    <li class="grow w-20">datalist</li>
-                    <li class="grow w-20">output</li>
-                    <li class="grow w-20">option</li> -->
-                    <!-- <li>optgroup</li> -->
-
-                    <!-- input type="button" -->
-                    <!-- input type="checkbox" -->
-                    <!-- input type="color" -->
-                    <!-- input type="date" -->
-                    <!-- input type="datetime-local" -->
-                    <!-- input type="email" -->
-                    <!-- input type="file" -->
-                    <!-- input type="hidden" -->
-                    <!-- input type="image" -->
-                    <!-- input type="month" -->
-                    <!-- input type="number" -->
-                    <!-- input type="password" -->
-                    <!-- input type="radio" -->
-                    <!-- input type="range" -->
-                    <!-- input type="reset" -->
-                    <!-- input type="search" -->
-                    <!-- input type="submit" -->
-                    <!-- input type="tel" -->
-                    <!-- input type="text" -->
-                    <!-- input type="time" -->
-                    <!-- input type="url" -->
-                    <!-- input type="week" -->
-
-                </ul>
                 <form @submit.prevent="form.post(route('members.store'), { onSuccess: () => form.reset() })" enctype="multipart/form-data">
-                    <fieldset class="mt-4">
+                    <fieldset class="mt-0">
                         <legend >Personal Info</legend>
                         <hr>
                         <div class="mt-4">
@@ -183,6 +142,7 @@ const form = useForm({
                     </fieldset>
 
                     <fieldset class="mt-8">
+                        {{  form.image }}
                         <legend>Files</legend><hr>
                         <div class="flex flex-row gap-4">
                             <div class="mt-4 basis-6/12">
@@ -364,10 +324,9 @@ const form = useForm({
                     </fieldset>
                    
                     <div class="text-center">
-                        <!-- <PrimaryButton class="mt-4">Update</PrimaryButton> -->
                         <input type="submit" value="Save" class="mt-4 inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs
-                 text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 
-                 focus:ring-offset-2 transition ease-in-out duration-150 "> 
+                            text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 
+                            focus:ring-offset-2 transition ease-in-out duration-150 "> 
                     </div>
                 </form>
             </div>

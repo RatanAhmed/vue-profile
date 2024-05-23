@@ -24,16 +24,56 @@ const submit = () => {
     <GuestLayout>
         <Head title="Register" />
 
-        <div class="text-center">
-            <h1 class="text-xl font-bold">Interview Task</h1>
+        <div class="text-start">
+            <h1 class="text-xl font-bold text-center">Interview Task</h1>
             <hr>
-            <h3 class="mt-4 underline">Laravel Crud with:</h3>
+            <h3 class="mt-4 underline font-bold text-center">Laravel - Vue Crud Opeartion with</h3>
             <ol >
-                <li> * All From Element</li>
-                <li> (Like personal profile) </li>
-                <li> * Multiple File Upload</li>
-                <!-- <li>Multiple File Upload</li> -->
+                <li class="text-center"> * All From Element  (like personal profile) </li>
             </ol>
+            <legend class="mt-3 text-center">Form Elements</legend><hr>
+            <ul class="py-5 px-5 flex flex-wrap" style="list-style-type:circle">
+                <li class="grow w-20">input</li>
+                <li class="grow w-20">label</li>
+                <li class="grow w-20">select</li>
+                <li class="grow w-20">textarea</li>
+                <li class="grow w-20">button</li>
+                <li class="grow w-20">fieldset</li>
+                <li class="grow w-20">legend</li>
+                <li class="grow w-20">datalist</li>
+                <li class="grow w-20">output</li>
+                <li class="grow w-20">option</li>
+                <li class="grow w-20">optgroup</li>
+            </ul>
+            <legend class="mt-3 text-center">Input Attrubute Type</legend><hr><hr>
+            <div class="flex mt-4">
+                <ul class="ps-5 flex flex-wrap" style="list-style-type:circle">
+                    <li class="grow w-full">input type="button"</li>
+                    <li class="grow w-full">input type="checkbox"</li>
+                    <li class="grow w-full">input type="color"</li>
+                    <li class="grow w-full">input type="date"</li>
+                    <li class="grow w-full">input type="datetime-local"</li>
+                    <li class="grow w-full">input type="email"</li>
+                    <li class="grow w-full">input type="file"</li>
+                    <li class="grow w-full">input type="hidden"</li>
+                    <li class="grow w-full">input type="image"</li>
+                    <li class="grow w-full">input type="month"</li>
+                </ul>
+                <ul class="ps-3 flex flex-wrap" style="list-style-type:circle">
+                    <li class="grow w-full">input type="number"</li>
+                    <li class="grow w-full">input type="password"</li>
+                    <li class="grow w-full">input type="radio"</li>
+                    <li class="grow w-full">input type="range"</li>
+                    <li class="grow w-full">input type="reset"</li>
+                    <li class="grow w-full">input type="search"</li>
+                    <li class="grow w-full">input type="submit"</li>
+                    <li class="grow w-full">input type="tel"</li>
+                    <li class="grow w-full">input type="text"</li>
+                    <li class="grow w-full">input type="time"</li>
+                    <li class="grow w-full">input type="url"</li>
+                    <li class="grow w-full">input type="week"</li>
+                </ul>
+            </div>
         </div>
         <div class="text-center mt-4 flex justify-around">
             <Link 
@@ -56,7 +96,11 @@ const submit = () => {
                 Login
             </Link>
         </div>
-
+            <footer class="text-center mt-5"> 
+                <p>
+                    Submitted By: Md. Ratan Howlader 
+                </p>
+            </footer>
         
     </GuestLayout>
 </template>

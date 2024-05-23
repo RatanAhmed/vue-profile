@@ -8,35 +8,22 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 use Inertia\Response;
-use Illuminate\Support\Facades\Gate;
 
 class MemberController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    // public function index(): Response
-    public function index()
+    public function index(): Response
     {
         return Inertia::render('Member/Index', [
             'members' => Member::latest()->get()
         ]);
     }
-    /**
-     * Show the form for creating a new resource.
-     */
+
     public function create(): Response
     {
-        return Inertia::render('Member/Create', [
-            //
-        ]);
+        return Inertia::render('Member/Create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    // public function store(Request $request): RedirectResponse
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
         $validated = $request->validate([
             'name' => 'required|string|max:255',
@@ -60,15 +47,10 @@ class MemberController extends Controller
         $member = Member::create($validated);
 
         if ($request->hasFile('image')) {
-            $image = $request->file('image');
-            $imageName = $image->getClientOriginalName();
-            $member->image =  Storage::putFileAs('image', $image, $imageName);
+            $member->image =  $this->fileUpload($request->file('image'), 'image');
         }
-
         if ($request->hasFile('resume')) {
-            $resume = $request->file('resume');
-            $resumeName = $resume->getClientOriginalName();
-            $member->resume =  Storage::putFileAs('resume', $resume, $resumeName);
+            $member->resume =  $this->fileUpload($request->file('resume'), 'resume');
         }
         
         $member->language_skill = json_encode($request->language_skill);
@@ -76,17 +58,6 @@ class MemberController extends Controller
         return redirect(route('members.index'));
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Member $Member)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(Member $member)
     {
         return Inertia::render('Member/Edit', [
@@ -94,9 +65,6 @@ class MemberController extends Controller
         ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, Member $member)
     {
         $validated = $request->validate([
@@ -112,19 +80,15 @@ class MemberController extends Controller
             'institution'  => 'required|max:255',
             'result'  => 'required',
             'result_type'  => 'required',
-            // 'language_skill'  => 'required',
             'experience_in_year'  => 'required|max:255',
         ]);
+
         $member->fill($validated);
         if ($request->hasFile('image')) {
-            $image = $request->file('image');
-            $imageName = $image->getClientOriginalName();
-            $member->image =  Storage::putFileAs('image', $image, $imageName);
+            $member->image =  $this->fileUpload($request->file('image'), 'image');
         }
         if ($request->hasFile('resume')) {
-            $resume = $request->file('resume');
-            $resumeName = $resume->getClientOriginalName();
-            $member->resume =  Storage::putFileAs('resume', $resume, $resumeName);
+            $member->resume =  $this->fileUpload($request->file('resume'), 'resume');
         }
         
         $member->language_skill = json_encode($request->language_skill);
@@ -133,12 +97,16 @@ class MemberController extends Controller
         return redirect(route('members.index'));
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Member $member): RedirectResponse
     {
         $member->delete();
         return redirect(route('members.index'));
+    }
+
+    private function fileUpload($requestFile, $folder){
+        $file = $requestFile;
+        $fileName = $file->getClientOriginalName();
+        $path = Storage::putFileAs($folder, $file, $fileName);
+        return $path;
     }
 }
